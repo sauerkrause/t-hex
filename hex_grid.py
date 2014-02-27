@@ -66,8 +66,6 @@ class HexGrid:
         def draw_point(self, row, col, surface, color):
             pt = self._center_point(row, col)
             pygame.draw.polygon(surface, color, self.get_edge_points(row, col), 1)
-            if (row, col) in self.potential_highlights:
-                pygame.draw.polygon(surface, pygame.Color("grey"), self.get_edge_points(row, col))
             if (row, col) in self.highlighted:
                 pygame.draw.polygon(surface, color, self.get_edge_points(row, col))
 

@@ -9,13 +9,14 @@ class App:
         self._running = True
         self._display_surf = None
         self._grid = None
+        self._status_window = None
  
     def on_init(self):
         pygame.init()
         self._display_surf = pygame.display.set_mode((840,480), pygame.HWSURFACE)
-        self._running = True
         self._grid = grid.Grid(10, 10)
         self._status_window = status_window.StatusWindow()
+        self._running = True
         
     def on_event(self, event):
         if event.type == QUIT:
@@ -29,7 +30,7 @@ class App:
     def on_render(self):
         self._display_surf.fill(pygame.Color("black"))
         self._grid.draw(self._display_surf)
-        self._status_window.draw(self._display_surf, self._grid.selection)
+        self._status_window.draw(self._display_surf, self._grid.selected_coords, self._grid.selection)
         pygame.display.flip()
  
     def on_cleanup(self):
