@@ -8,7 +8,7 @@ class Grid(object):
         self.columns = columns
         self._hex_grid = hex_grid.HexGrid(rows, columns, 50, 50)
         self.objects = {}
-        self.selected_coord = ()
+        self.selected_coords = ()
         self.selection = []
         for i in range(0, rows):
             for j in range(0, columns):
