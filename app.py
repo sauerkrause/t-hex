@@ -1,31 +1,35 @@
 import pygame
 from pygame.locals import *
 
-import hex_grid
+import grid
+import status_window
 
 class App:
     def __init__(self):
         self._running = True
         self._display_surf = None
-        self._hex_grid = None
+        self._grid = None
  
     def on_init(self):
         pygame.init()
-        self._display_surf = pygame.display.set_mode((640,480), pygame.HWSURFACE)
+        self._display_surf = pygame.display.set_mode((840,480), pygame.HWSURFACE)
         self._running = True
-        self._hex_grid = hex_grid.HexGrid(10,10,50,50)
+        self._grid = grid.Grid(10, 10)
+        self._status_window = status_window.StatusWindow()
         
     def on_event(self, event):
         if event.type == QUIT:
             self._running = False
         elif event.type == MOUSEMOTION:
-            self._hex_grid.highlight(event.pos)
+            self._grid.mouse_over(event.pos)
             
     def on_loop(self):
         pass
+
     def on_render(self):
         self._display_surf.fill(pygame.Color("black"))
-        self._hex_grid.draw(self._display_surf, pygame.Color("white"))
+        self._grid.draw(self._display_surf)
+        self._status_window.draw(self._display_surf, self._grid.selection)
         pygame.display.flip()
  
     def on_cleanup(self):
