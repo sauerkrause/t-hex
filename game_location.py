@@ -18,6 +18,3 @@ class GameLocation(object):
 
     def add_content(self, content):
         self._contents.append(content)
-
-    def __str__(self):
-        return { "terrain": self.terrain(), "contents": self.contents() }
